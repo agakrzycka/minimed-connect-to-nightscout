@@ -40,6 +40,16 @@ Another turnkey installation option is to run this on a Heroku worker dyno. You 
 * `API_SECRET` - the value you use for `API_SECRET` on your Nightscout website
 * `WEBSITE_HOSTNAME` - the hostname for your Nightscout instance, which looks like `your.host.com`. If you are running this script in the same Azure environment as Nightscout, there is no need to set this, as it will [already be set by Azure][azure-environment]. If you set `NS` (see below), you do not need to set this.
 
+### EU servers update
+
+* Edit your
+ `node_modules/minimed-connect-to-nightscout/transform.js `
+ file and replace the content of the parsePumpTime function with the following:
+ `return Date.parse(timestamp);`
+* Edit your
+`node_modules/minimed-connect-to-nightscout/carelink.js `
+file and then search and replace “`minimed.com`” with “`minimed.eu`” (without the quotes, obviously!)
+
 ### Optional environment variables
 
 * `CARELINK_REQUEST_INTERVAL` - number of milliseconds to wait between requests to the CareLink server (default: 60000)
